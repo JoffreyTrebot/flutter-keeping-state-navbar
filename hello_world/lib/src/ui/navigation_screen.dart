@@ -9,37 +9,29 @@ import 'home/home.dart';
 import 'map/map.dart';
 
 class NavigationScreen extends StatelessWidget {
-  final PageStorageBucket bucket = PageStorageBucket();
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: PageStorage(
-        bucket: bucket,
-        child: BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
-          builder: (BuildContext context, BottomNavigationState state) {
-            if (state is PageLoading) {
-              return Center(child: CircularProgressIndicator());
-            }
-            if (state is FirstPageLoaded) {
-              return HomePage(
-                key: PageStorageKey('FeedPage'),
-              );
-            }
-            if (state is SecondPageLoaded) {
-              return BlocProvider(
-                create: (BuildContext context) =>
-                    GeoLocationBloc(geolocator: Geolocator())
-                      ..add(GeoLocationStarted()),
-                child: MapPage(
-                  key: PageStorageKey('MapPage'),
-                ),
-              );
-            }
-            return Container();
-          },
-        ),
+      body: BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
+        builder: (BuildContext context, BottomNavigationState state) {
+          if (state is PageLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state is FirstPageLoaded) {
+            return HomePage(
+              key: PageStorageKey('FeedPage'),
+            );
+          }
+          if (state is SecondPageLoaded) {
+            return BlocProvider(
+              create: (BuildContext context) =>
+                  GeoLocationBloc(geolocator: Geolocator())
+                    ..add(GeoLocationStarted()),
+              child: MapPage(),
+            );
+          }
+          return Container();
+        },
       ),
       bottomNavigationBar:
           BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
