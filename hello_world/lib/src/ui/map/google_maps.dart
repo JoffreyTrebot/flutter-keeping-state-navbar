@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoogleMaps extends StatefulWidget {
-  final Position position;
-  GoogleMaps({Key key, this.position}) : super(key: key);
+  GoogleMaps({Key key }) : super(key: key);
 
   @override
   _GoogleMapsState createState() => _GoogleMapsState();
