@@ -1,26 +1,16 @@
-import 'package:meta/meta.dart';
-import 'package:equatable/equatable.dart';
+part of 'bottom_navigation.bloc.dart';
 
 abstract class BottomNavigationEvent extends Equatable {
-  BottomNavigationEvent([List props = const []]);
+  const BottomNavigationEvent();
 }
 
-class AppStarted extends BottomNavigationEvent {
+class LoadHome extends BottomNavigationEvent{
   @override
   List<Object> get props => [];
 
-  @override
-  String toString() => 'AppStarted';
 }
-
-class PageTapped extends BottomNavigationEvent {
-  final int index;
-
-  PageTapped({@required this.index}) : super([index]);
-
+class LoadMap extends BottomNavigationEvent{
   @override
-  List<Object> get props => [index];
+  List<Object> get props => [];
 
-  @override
-  String toString() => 'PageTapped: $index';
 }
